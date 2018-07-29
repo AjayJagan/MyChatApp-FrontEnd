@@ -2,6 +2,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import contactList from '../../components/contacts/contactList';
 import {getAllContacts} from '../../actions/ContactAction/ContactListAction';
+import { withRouter } from 'react-router-dom';
 
 function mapStateToProps(state) {
     return {
@@ -15,4 +16,4 @@ const mapDispatchToProps = (dispatch) => {
     }, dispatch);
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(contactList);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(contactList));

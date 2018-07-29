@@ -4,6 +4,8 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import MoreVert from '@material-ui/icons/MoreVert';
 import IconButton from '@material-ui/core/IconButton';
+import Typography from '@material-ui/core/Typography';
+
 
 const styles = theme => ({
     header: {
@@ -15,7 +17,12 @@ const styles = theme => ({
         padding: theme.spacing.unit * 2,
         boxSizing: 'border-box',
         alignItems: 'center',
-    }
+    },
+    flex: {
+        flexGrow: 1,
+        margin: '0px 0px 0px 10px',
+        color: 'snow',
+    },
 })
 class Header extends React.Component {
     constructor(props) {
@@ -42,6 +49,9 @@ class Header extends React.Component {
         return <div>
             <div className={classes.header}>
                 <div>
+                    <Typography variant="title" color="inherit" className={classes.flex}>
+                        Contacts
+             </Typography>
                 </div>
                 <div>
                 </div>

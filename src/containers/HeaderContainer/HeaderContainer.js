@@ -5,7 +5,7 @@ import { logout } from '../../actions/UserAction/UserAction';
 
 function mapStateToProps(state) {
     return {
-        
+       
     };
 }
 
