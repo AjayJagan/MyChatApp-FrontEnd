@@ -6,6 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Send from '@material-ui/icons/Send';
+import Message from '../Message/message';
 
 const styles = theme => ({
     root: {
@@ -37,21 +38,21 @@ const styles = theme => ({
 });
 
 class ChatPage extends React.Component {
-    componentDidMount(){
-      
+    componentDidMount() {
+
     }
-    onMessageChange = (e) =>{
+    onMessageChange = (e) => {
         this.props.messageChange(e.target.value);
     }
-    sendMessage = () =>{
-        if(!this.props.chat.message){
+    sendMessage = () => {
+        if (!this.props.chat.message) {
             return
         }
-        else{
+        else {
             this.props.sendMessage({
-                type:'chatMessage',
-                to:this.props.contact.email,
-                message:this.props.chat.message
+                type: 'chatMessage',
+                to: this.props.contact.email,
+                message: this.props.chat.message
             })
         }
     }
@@ -62,8 +63,20 @@ class ChatPage extends React.Component {
             <div className={classes.messageBox}>
                 <Paper className={classes.root} elevation={15}>
                     <Typography variant="headline" component="h3">
-                        Messages will shortly appear here :)
-           </Typography>
+                        {
+                            (this.props.chat.conversations[this.props.contact.email] || []).map(messageId => {
+                                
+                                const message = this.props.chat.messages[messageId];
+                             
+                                return (
+                                    <Message
+                                        message={message}
+                                        key={messageId}
+                                    />
+                                )
+                            })
+                        }
+                    </Typography>
                 </Paper>
             </div>
             <div>
@@ -74,6 +87,7 @@ class ChatPage extends React.Component {
                     multiline
                     className={classes.textField}
                     margin="normal"
+                    value={this.props.chat.message}
                     onChange={this.onMessageChange}
                 />
 

@@ -6,16 +6,19 @@ import { Provider } from 'react-redux';
 import store from './store'
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import ChatPage from './containers/chat/chatContainer';
+import WebSocket from './containers/WebSocketContainer/webSocketContainer';
 
 ReactDom.render(
     <Provider store={store}>
         <Login>
-            <BrowserRouter>
-                <Switch>
-                    <Route path='/chat/:email' component={ChatPage} />
-                    <Route path='/' component={Home} />
-                </Switch>
-            </BrowserRouter>
+            <WebSocket>
+                <BrowserRouter>
+                    <Switch>
+                        <Route path='/chat/:email' component={ChatPage} />
+                        <Route path='/' component={Home} />
+                    </Switch>
+                </BrowserRouter>
+            </WebSocket>
         </Login>
     </Provider>,
     document.getElementById('app'));

@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-
-const baseURL = 'http://localhost:3002/';
+const domain = window.location.hostname;
+const baseURL = `http://localhost:3000/`;
 
 const instance = axios.create({
     baseURL,

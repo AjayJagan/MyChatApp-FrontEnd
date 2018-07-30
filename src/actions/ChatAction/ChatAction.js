@@ -1,10 +1,10 @@
 export const types ={
     MESSAGE_CHANGE:'MESSAGE_CHANGE',
     SEND_MESSAGE:'SEND_MESSAGE',
+    RECEIVE_MESSAGE:'RECEIVE_MESSAGE',
 }
 
 export const messageChange = (message) =>{
-    console.log(message)
    return {
        type:types.MESSAGE_CHANGE,
        payload:{
@@ -19,5 +19,12 @@ export const sendMessage = (messageDetails) =>{
         payload:{
             messageDetails
         }
+    }
+};
+
+export const receiveMessage = (message) =>{
+    return{
+        type:types.RECEIVE_MESSAGE,
+        payload:message
     }
 }
