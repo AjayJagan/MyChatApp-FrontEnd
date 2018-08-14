@@ -97,7 +97,7 @@ class Login extends React.Component {
         return <div>
                 <Paper
                     classes={{ root: classes.loginPaper }}
-                >
+                >   
                     <div className={classes.loginPaperContent}>
                     <div className={classes.logoContainer}>
                     <img src={require('../../static/images/chat-bubble.jpg')} className={classes.logo} />

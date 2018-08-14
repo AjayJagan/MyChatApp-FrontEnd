@@ -15,7 +15,8 @@ const styles = theme => ({
         paddingBottom: theme.spacing.unit * 40,
         backgroundColor: 'snow',
         maxHeight: 200,
-        overflow: 'auto'
+        overflow: 'auto',
+        
 
     },
     messageBox: {
@@ -39,7 +40,7 @@ const styles = theme => ({
 
 class ChatPage extends React.Component {
     componentDidMount() {
-
+        this.props.loadMessage(this.props.match.params.email)
     }
     onMessageChange = (e) => {
         this.props.messageChange(e.target.value);
@@ -48,31 +49,39 @@ class ChatPage extends React.Component {
         if (!this.props.chat.message) {
             return
         }
-        else {
+        else{
             this.props.sendMessage({
                 type: 'chatMessage',
                 to: this.props.contact.email,
                 message: this.props.chat.message
             })
+
+           // this.props.currentMessageDisplay(this.props.chat.message); 
         }
     }
+    
     render() {
         const { classes } = this.props;
         return <div>
             <ChatHeader />
             <div className={classes.messageBox}>
                 <Paper className={classes.root} elevation={15}>
+                  
                     <Typography variant="headline" component="h3">
+                        
                         {
                             (this.props.chat.conversations[this.props.contact.email] || []).map(messageId => {
                                 
                                 const message = this.props.chat.messages[messageId];
-                             
+                                
                                 return (
+                                    <div>
                                     <Message
                                         message={message}
+                                        sentByMe={message.to===this.props.match.params.email}
                                         key={messageId}
                                     />
+                                    </div>
                                 )
                             })
                         }
